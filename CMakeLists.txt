@@ -1,5 +1,6 @@
-project( CPP11 )
-cmake_minimum_required( VERSION 2.8 )
+project(abstract_api_demo)
+
+cmake_minimum_required(VERSION 3.9)
 
 # remove compiler checks if you are using VS2010, it supports
 #   1. auto
@@ -21,4 +22,25 @@ else()
     # MSVC, On by default (if available)
 endif()
 
-add_executable( ${PROJECT_NAME} main.cpp )
+#条件编译
+if(WIN32)
+    message("os:win32")
+elseif(ANDROID)
+    message("os:android")
+elseif(IOS)
+    message("os:ios")
+endif()
+
+#添加文件
+FILE(GLOB global
+    *.h
+    *.cpp
+)
+source_group("" FILES ${global})
+
+set(ALL_SOURCE_FILES
+    ${global}
+)
+
+#生成目标文件
+add_executable(abstract_api_demo ${ALL_SOURCE_FILES})
