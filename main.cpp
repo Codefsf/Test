@@ -3,11 +3,14 @@
 #include <algorithm>
 #include <memory>
 
-#include "calendar.h"
+#include "host.h"
+#include "plugin.h"
 
 int main( void )
 {
-    Calendar calendar;
+    Plugin plugin;
+
+    Host host;
 
     return 0;
 }

@@ -1,10 +1,10 @@
 #include <memory>
 
-class Calendar
+class Plugin
 {
 public:
-    Calendar();
-    ~Calendar();
+    Plugin();
+    ~Plugin();
 private:
     //TODO
 };

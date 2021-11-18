@@ -1,15 +1,15 @@
 #include <iostream>
 
-#include "calendar.h"
+#include "plugin.h"
 
 using namespace std;
 
-Calendar::Calendar()
+Plugin::Plugin()
 {
     cout << __func__ << endl;
 }
 
-Calendar::~Calendar()
+Plugin::~Plugin()
 {
     cout << __func__ << endl;
 }
