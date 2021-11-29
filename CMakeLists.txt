@@ -1,4 +1,5 @@
-project(abstract_api_demo)
+project(test_demo)
+set(PROJECT_NAME test_demo)
 
 cmake_minimum_required(VERSION 3.9)
 
@@ -31,6 +32,10 @@ elseif(IOS)
     message("os:ios")
 endif()
 
+include_directories(
+    ${PROJECT_SOURCE_DIR}/incoming/leveldb/include
+)
+
 #添加文件
 FILE(GLOB global
     *.h
@@ -43,4 +48,12 @@ set(ALL_SOURCE_FILES
 )
 
 #生成目标文件
-add_executable(abstract_api_demo ${ALL_SOURCE_FILES})
+add_executable(${PROJECT_NAME} ${ALL_SOURCE_FILES})
+
+target_link_directories(${PROJECT_NAME} PRIVATE
+    "${PROJECT_SOURCE_DIR}/incoming/leveldb/build/$<CONFIG>/"
+)
+
+target_link_libraries(${PROJECT_NAME} PRIVATE
+    leveldb
+)
