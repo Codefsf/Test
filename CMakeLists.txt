@@ -23,7 +23,7 @@ else()
     # MSVC, On by default (if available)
 endif()
 
-#条件编译
+#不同平台条件编译
 if(WIN32)
     message("os:win32")
 elseif(ANDROID)
@@ -32,6 +32,7 @@ elseif(IOS)
     message("os:ios")
 endif()
 
+#依赖包含目录
 include_directories(
     ${PROJECT_SOURCE_DIR}/incoming/leveldb/include
 )
@@ -50,10 +51,12 @@ set(ALL_SOURCE_FILES
 #生成目标文件
 add_executable(${PROJECT_NAME} ${ALL_SOURCE_FILES})
 
+#外部依赖库目录
 target_link_directories(${PROJECT_NAME} PRIVATE
     "${PROJECT_SOURCE_DIR}/incoming/leveldb/build/$<CONFIG>/"
 )
 
+#外部依赖库
 target_link_libraries(${PROJECT_NAME} PRIVATE
     leveldb
 )
