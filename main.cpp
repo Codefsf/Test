@@ -2,6 +2,10 @@
 #include <vector>
 #include <algorithm>
 #include <memory>
+#include <chrono>
+#include <fstream>
+#include <time.h>
+#include <io.h>
 
 #include "leveldb/db.h"
 #include "leveldb/env.h"
@@ -14,21 +18,43 @@ int main( void )
     options.create_if_missing = true;
     leveldb::Status status = leveldb::DB::Open(options, "./testdb", &db);
 
-    //读写数据库
-    std::string value1 = "testvalue1";
-    std::string value2 = "testvalue2";
-    std::string value3 = "testvalue3";
+    int i = 0;
 
-    status = db->Put(leveldb::WriteOptions(), "key1", value1);
-    status = db->Put(leveldb::WriteOptions(), "key2", value2);
-    status = db->Put(leveldb::WriteOptions(), "key3", value3);
+    int64_t start_time = time(0);
+    std::cout << "start:" << start_time << std::endl;
 
-
-    leveldb::Iterator* it = db->NewIterator(leveldb::ReadOptions());
-    for (it->SeekToFirst(); it->Valid(); it->Next()) {
-        std::cout << it->key().ToString() << ": "  << it->value().ToString() << std::endl;
+    std::string image_dir = "./thumbimage/*.png";
+    long handle = 0;
+    _finddata_t file_info;
+    handle = _findfirst(image_dir.c_str(), &file_info);
+    if (handle == -1)
+    {
+        return -1;
     }
-    delete it;
+
+    do
+    {
+        std::string image_data;
+        std::ifstream read_file;
+
+        std::string file_path = std::string("./thumbimage/").append(file_info.name);
+        read_file.open(file_path, std::ios_base::binary);
+
+        image_data.reserve(file_info.size);
+        read_file.read(const_cast<char*>(image_data.c_str()), file_info.size);
+        read_file.close();
+
+        std::cout << "file_info: " << std::to_string(i) << " " << file_info.name << file_info.size << " " << std::to_string(image_data.size()) 
+        << " pa" << file_path << std::endl;
+
+        db->Put(leveldb::WriteOptions(), std::to_string(i++), image_data);
+    } while(!_findnext(handle, &file_info));
+    
+    _findclose(handle);
+    
+    int64_t end_time = time(0);
+    std::cout << "end:" << end_time << std::endl;
+    std::cout << "use time:" << end_time - start_time << std::endl;
     //关闭数据库
     delete db;
 
