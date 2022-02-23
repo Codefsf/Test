@@ -41,27 +41,27 @@ private:
 
 void TestMemory()
 {
-    TestMutex test_mutex("task-1");
+    // TestMutex test_mutex("task-1");
 
-    std::thread t1([&test_mutex]() {
-        for (int i = 0; i < 100; ++i)
-        {
-            test_mutex.setValue(i);
+    // std::thread t1([&test_mutex]() {
+    //     for (int i = 0; i < 100; ++i)
+    //     {
+    //         test_mutex.setValue(i);
 
-            std::this_thread::sleep_for(std::chrono::milliseconds(100));
-        }
-    });
+    //         std::this_thread::sleep_for(std::chrono::milliseconds(100));
+    //     }
+    // });
 
-    std::thread t2([&test_mutex]() {
-        for (int i = 0; i < 100; ++i)
-        {
-            test_mutex.setValue(i);
+    // std::thread t2([&test_mutex]() {
+    //     for (int i = 0; i < 100; ++i)
+    //     {
+    //         test_mutex.setValue(i);
 
-            std::this_thread::sleep_for(std::chrono::milliseconds(100));
-        }
-    });
+    //         std::this_thread::sleep_for(std::chrono::milliseconds(100));
+    //     }
+    // });
 
-    t1.join();
-    t2.join();
+    // t1.join();
+    // t2.join();
 }
 
