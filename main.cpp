@@ -1,12 +1,12 @@
 #include <iostream>
 
+#include "test_memory.hpp"
+
 using namespace std;
 
 int main( void )
 {
-    //test cout
-    cout << "hello world" << endl;
-
-
+    TestMemory();
+    
     return 0;
 }
