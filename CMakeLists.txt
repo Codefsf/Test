@@ -59,4 +59,5 @@ target_link_directories(${PROJECT_NAME} PRIVATE
 #外部依赖库
 target_link_libraries(${PROJECT_NAME} PRIVATE
     # leveldb
+    pthread
 )
