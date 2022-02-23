@@ -53,10 +53,10 @@ add_executable(${PROJECT_NAME} ${ALL_SOURCE_FILES})
 
 #外部依赖库目录
 target_link_directories(${PROJECT_NAME} PRIVATE
-    "${PROJECT_SOURCE_DIR}/incoming/leveldb/build/$<CONFIG>/"
+    # "${PROJECT_SOURCE_DIR}/incoming/leveldb/build/$<CONFIG>/"
 )
 
 #外部依赖库
 target_link_libraries(${PROJECT_NAME} PRIVATE
-    leveldb
+    # leveldb
 )
