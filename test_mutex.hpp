@@ -39,10 +39,10 @@ void TestMutex()
         DataObject *data_object = new DataObject("task-1");
 
     std::thread t1([&data_object]() {
-        for (int i = 0; i < 50; ++i)
+        for (int i = 0; i < 5; ++i)
         {
             cout << "Task " << i << endl;
-            std::this_thread::sleep_for(std::chrono::milliseconds(10));
+            std::this_thread::sleep_for(std::chrono::microseconds(1));
         }
 
         delete data_object;
@@ -50,14 +50,14 @@ void TestMutex()
     });
 
     std::thread t2([&data_object]() {
-        for (int i = 0; i < 100; ++i)
+        for (int i = 0; i < 10; ++i)
         {
             if (data_object != nullptr)
             {
                 data_object->setValue(std::to_string(i));
             }
 
-            std::this_thread::sleep_for(std::chrono::milliseconds(10));
+            std::this_thread::sleep_for(std::chrono::microseconds(1));
         }
     });
 
