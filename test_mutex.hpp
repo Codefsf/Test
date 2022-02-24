@@ -42,7 +42,7 @@ void TestMutex()
         for (int i = 0; i < 5; ++i)
         {
             cout << "Task " << i << endl;
-            std::this_thread::sleep_for(std::chrono::microseconds(1));
+            std::this_thread::sleep_for(std::chrono::microseconds(100));
         }
 
         delete data_object;
@@ -57,7 +57,7 @@ void TestMutex()
                 data_object->setValue(std::to_string(i));
             }
 
-            std::this_thread::sleep_for(std::chrono::microseconds(1));
+            std::this_thread::sleep_for(std::chrono::microseconds(100));
         }
     });
 
