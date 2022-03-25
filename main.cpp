@@ -5,12 +5,14 @@
 #include "test_leveldb.hpp"
 #include "test_sharedptr.hpp"
 #include "test_threadpool.hpp"
+#include "test_stackoverflow.hpp"
+#include "test_segmentfault.hpp"
 
 using namespace std;
 
 int main( void )
 {
-    TestThreadPool();
-
+    TestSegmentfault();
+    
     return 0;
 }
