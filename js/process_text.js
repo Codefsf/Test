@@ -21,12 +21,16 @@ function process_text(filename)
     // })
 
     const rl = readline.createInterface(
-        fs.createReadStream(filename),
+        process.stdin,
         process.stdout
     );
 
     rl.on('line', (line)=>{
         console.log(line);
+    });
+
+    rl.on('resume', ()=>{
+        console.log('resume')
     });
 }
 
