@@ -1,0 +1,17 @@
+{
+  "name": "rrule",
+  "version": "1.0.0",
+  "description": "",
+  "main": "rrule_process.js",
+  "dependencies": {
+    "rrule": "^2.6.9"
+  },
+  "devDependencies": {},
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "type": "module"
+}
