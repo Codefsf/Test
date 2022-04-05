@@ -11,8 +11,11 @@ const rule = new RRule({
     until: new Date(2022, 9, 2, 9, 0)
 })
 
-console.log("rrule string:" + rule.toString());
+function test_rrule()
+{
+    console.log("rrule string:" + rule.toString());
 
-console.log("rrule:" + rule.all());
-
-console.log("rrule text:" + rule.toText());
+    console.log("rrule:" + rule.all());
+    
+    console.log("rrule text:" + rule.toText());
+}
